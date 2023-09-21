@@ -1,48 +1,41 @@
 footer {
-  margin-top: 8px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1px;
+  gap: 10px;
 }
 
 .key-row {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1px;
+  gap: 3px;
 }
 .key-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(129, 131, 132, 0.3);
-  border-radius: 2px;
-  font-size: 2px;
-  width: 10px;
-  height: 14px;
+  border-radius: 5px;
+  font-size: 20px;
+  width: 40px;
+  height: 50px;
+  font-weight: bold;
 }
-.key1 {
+.key {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(129, 131, 132, 0.3);
-  border-radius: 2px;
-  width: 20px;
-  height: 14px;
-  font-size: xx-small;
-}
-.key2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(129, 131, 132, 0.3);
-  border-radius: 2px;
-  width: 20px;
-  height: 14px;
+  border-radius: 5px;
+  width: 60px;
+  height: 50px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
-.key2 img {
-  width: 10px;
+.key img {
+  width: 25px;
 }

@@ -3,11 +3,10 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1px;
+  gap: 2px;
 }
 .time {
-  transform: scale(0.4);
-  margin-bottom: -5px;
+  font-size: 25px;
   font-weight: bold;
 }
 .board-row {
@@ -21,6 +20,8 @@ main {
   justify-content: center;
   align-items: center;
   border: 0.4px solid #d3d6da;
-  width: 10px;
-  height: 10px;
+  width: 60px;
+  height: 60px;
+  font-size: 40px;
+  font-weight: bold;
 }
