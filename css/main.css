@@ -1,0 +1,26 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+}
+.time {
+  transform: scale(0.4);
+  margin-bottom: -5px;
+  font-weight: bold;
+}
+.board-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+}
+.board-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.4px solid #d3d6da;
+  width: 10px;
+  height: 10px;
+}
