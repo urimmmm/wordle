@@ -1,6 +1,7 @@
 let index = 0;
 let attempts = 0;
 let timer = 0;
+const 정답 = "APPLE";
 
 //앱이 시작할 때 함수
 function appStart() {
@@ -28,6 +29,7 @@ function appStart() {
     if (attempts === 6) gameover();
     index = 0;
   };
+
   //Enter를 눌렀을 때 함수
   const handleEnterKey = async () => {
     let 맞은_개수 = 0;
@@ -38,30 +40,67 @@ function appStart() {
     //fetch는 javaScript에서 서버로 요청을 보낼 때 쓰는 함수
     //"/answer"라는 경로로 요청을 보낼 것
     //즉, answer이라는 경로에서 받아온 답을 기다려서 업뎃을 함
-    const 응답 = await fetch("/answer");
+    //const 응답 = await fetch("/answer");
     //안에 있는 정답을 판단하는 것
     //그 응답을 json으로 포맷으로 바꿈(자바스크립트에 맞게 바꿔준다)
     //javascript objuct nootation의 줄인말
-    const 정답_객체 = await 응답.json();
-    const 정답 = 정답_객체.answer;
+    //const 정답_객체 = await 응답.json();
+    //const 정답 = 정답_객체.answer;
 
+    //클래스 key-btn의 모든 값을 배열로 가져옴
+    //Q부터 M까지 0부터 25까지 차례대로 값을 가짐
+    let alphabet = Array.from(document.querySelectorAll(`.key-btn`));
     for (let i = 0; i < 5; i++) {
       const block = document.querySelector(
         `.board-block[data-index='${attempts}${i}']`
       );
+
       const 입력_글자 = block.innerText;
       const 정답_글자 = 정답[i];
+
+      //배열로 받아온 alphabet값에서 변수 값을 찾늗다
+      //elememt는 html에서 작성한 data-key가 있는데 dataset.key로 데이터 속성에서 key를 찾아옴
+      const key = alphabet.find((element) => element.dataset.key === 입력_글자);
 
       if (입력_글자 === 정답_글자) {
         맞은_개수 += 1;
         block.style.background = "#6aaa64";
-      } else if (정답.includes(입력_글자)) block.style.background = "#c9b458";
-      else block.style.background = "#787c7e";
-
+        key.style.background = "#6aaa64";
+        block.style.animation = "wiggle 1s ease-in";
+      } else if (정답.includes(입력_글자)) {
+        block.style.background = "#c9b458";
+        block.style.animation = "wiggle 1s ease-in";
+        key.style.background = "#c9b458";
+      } else {
+        block.style.background = "#787c7e";
+        key.style.background = "#787c7e";
+        block.style.animation = "wiggle 1s ease-in";
+      }
       block.style.color = "white";
     }
     if (맞은_개수 === 5) gameover;
     else nextline();
+  };
+
+  const handleClick = (event) => {
+    if (event.target.matches("[data-key")) {
+      function correct() {
+        const k = event.target.dataset.key;
+        return k;
+      }
+    }
+    const thisBlcok = document.querySelector(
+      `.board-block[data-index='${attempts}${index}']`
+    );
+
+    if (correct() === "Back") handleBackspace();
+    else if (index === 5) {
+      if (correct() === "Enter") handleEnterKey();
+      else return;
+    } else if (correct() != "Enter" && "Back" <= correct()) {
+      thisBlcok.innerText = correct();
+      index += 1;
+    }
   };
 
   const handleBackspace = () => {
@@ -109,6 +148,7 @@ function appStart() {
 
   startTimer();
   window.addEventListener("keydown", handlekeydown);
+  window.addEventListener("click", handleClick);
 }
 
 appStart();
